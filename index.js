@@ -8,10 +8,11 @@ const port = 3000
 // })();
 
 app.listen(port, () => {
-    repeatably(30000)
+    // repeatably(30000)
 })
 
 app.get('/', async (req, res) => {
+    repeatably(30000)
     res.sendStatus(200)
 })
 
