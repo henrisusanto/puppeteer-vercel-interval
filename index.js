@@ -1,8 +1,19 @@
 const puppeteer = require('puppeteer');
+const express = require('express')
+const app = express()
+const port = 3000
 
-(async () => {
+// (async () => {
+//     repeatably(30000)
+// })();
+
+app.listen(port, () => {
     repeatably(30000)
-})();
+})
+
+app.get('/', async (req, res) => {
+    res.sendStatus(200)
+})
 
 function repeatably(interval) {
     console.log('repeating', new Date())
