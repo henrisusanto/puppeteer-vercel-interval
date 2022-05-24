@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const chromium = require('chrome-aws-lambda');
 const express = require('express')
 const app = express()
 const port = 3000
@@ -16,16 +17,16 @@ app.get('/', async (req, res) => {
     res.sendStatus(200)
 })
 
-function repeatably(interval) {
+async function repeatably(interval) {
     console.log('repeating', new Date())
     setTimeout(async () => {
         await tweet()
-        repeatably()
+        await repeatably()
     }, interval)
 }
 
 async function tweet() {
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await chromium.puppeteer.launch({ headless: false });
     const page = await browser.newPage();
     await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36');
 
